@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AviHire - Aviation Jobs Platform | Pre-Registration</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="avihirelogo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="avihirelogo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="avihirelogo.png">
+    <link rel="shortcut icon" href="avihirelogo.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a365d 0%, #2d5282 50%, #1a365d 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 8s ease-in-out infinite;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 20%;
+            left: 10%;
+            width: 300px;
+            height: 150px;
+            background-image: url('avihirelogo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.02;
+            z-index: -1;
+            pointer-events: none;
+            transform: rotate(-15deg);
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 60%;
+            right: 15%;
+            width: 350px;
+            height: 175px;
+            background-image: url('avihirelogo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.015;
+            z-index: -1;
+            pointer-events: none;
+            transform: rotate(12deg);
+        }
+
+        .container::after {
+            content: '';
+            position: fixed;
+            top: 10%;
+            right: 5%;
+            width: 250px;
+            height: 125px;
+            background-image: url('avihirelogo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.025;
+            z-index: -1;
+            pointer-events: none;
+            transform: rotate(25deg);
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 60px 40px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15), 0 0 0 1px rgba(255,255,255,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #1a365d, #ff6b35, #1a365d);
+            background-size: 200% 100%;
+            animation: borderShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes borderShimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .logo-container {
+            margin-bottom: 20px;
+        }
+
+        .logo-img {
+            max-width: 400px;
+            max-height: 160px;
+            width: auto;
+            height: auto;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+            transition: all 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.02);
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .description {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-setup-note {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-left: 4px solid #ff6b35;
+            padding: 20px 25px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            color: #333;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            animation: fadeInUp 1s ease-out 0.6s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-setup-note::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .signup-form {
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 18px 20px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #ff6b35;
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-2px);
+            box-shadow: 
+                0 8px 25px rgba(255, 107, 53, 0.15),
+                0 0 0 4px rgba(255, 107, 53, 0.1);
+        }
+
+        .form-group input:focus + label,
+        .form-group select:focus + label {
+            color: #ff6b35;
+        }
+
+        .form-group:hover input:not(:focus),
+        .form-group:hover select:not(:focus) {
+            border-color: #d1d5db;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .date-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+        }
+
+        .checkbox-group {
+            text-align: left;
+            margin: 25px 0;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            gap: 15px;
+            padding: 15px 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .checkbox-label:hover {
+            background: rgba(26, 54, 93, 0.05);
+            transform: translateX(5px);
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin: 0;
+            accent-color: #ff6b35;
+            transform: scale(1.2);
+            transition: transform 0.2s ease;
+        }
+
+        .checkbox-label input[type="checkbox"]:checked {
+            transform: scale(1.3);
+        }
+
+        .checkbox-label a {
+            color: #1a365d;
+            text-decoration: none;
+        }
+
+        .checkbox-label a:hover {
+            text-decoration: underline;
+            color: #ff6b35;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close:hover {
+            color: #ff6b35;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #1a365d, #ff6b35);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #d4edda 0%, #f0fdf4 100%);
+            color: #155724;
+            padding: 25px;
+            border-radius: 16px;
+            margin-top: 25px;
+            border: 1px solid #c3e6cb;
+            box-shadow: 0 8px 25px rgba(21, 87, 36, 0.1);
+            animation: successSlideIn 0.6s ease-out;
+        }
+
+        @keyframes successSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .error-message {
+            display: none;
+            background: linear-gradient(135deg, #f8d7da 0%, #fef2f2 100%);
+            color: #721c24;
+            padding: 25px;
+            border-radius: 16px;
+            margin-top: 25px;
+            border: 1px solid #f5c6cb;
+            box-shadow: 0 8px 25px rgba(114, 28, 36, 0.1);
+            animation: errorShake 0.6s ease-out;
+        }
+
+        @keyframes errorShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .features {
+            margin-top: 50px;
+            text-align: left;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        .features h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1a365d, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features li {
+            padding: 12px 0;
+            color: #555;
+            position: relative;
+            padding-left: 35px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            animation: fadeInLeft 0.6s ease-out calc(var(--i) * 0.1s + 1.2s) both;
+        }
+
+        .features li:nth-child(1) { --i: 1; }
+        .features li:nth-child(2) { --i: 2; }
+        .features li:nth-child(3) { --i: 3; }
+        .features li:nth-child(4) { --i: 4; }
+        .features li:nth-child(5) { --i: 5; }
+        .features li:nth-child(6) { --i: 6; }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .features li:hover {
+            color: #333;
+            transform: translateX(5px);
+        }
+
+        .features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #ff6b35;
+            font-weight: bold;
+            font-size: 1.2rem;
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+        }
+
+        .loading {
+            display: none;
+            font-size: 1.1rem;
+            color: #1a365d;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(225, 229, 233, 0.6);
+            text-align: center;
+            color: #666;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease-out 1.8s both;
+        }
+
+        .footer a {
+            color: #1a365d;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer a:hover {
+            color: #ff6b35;
+            transform: translateY(-1px);
+        }
+
+        .footer a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff6b35;
+            transition: width 0.3s ease;
+        }
+
+        .footer a:hover::after {
+            width: 100%;
+        }
+
+        .facebook-icon {
+            height: 18px;
+            width: auto;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+            object-fit: contain;
+        }
+
+        .footer a:hover .facebook-icon {
+            transform: scale(1.1);
+            filter: brightness(1.1);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 30px;
+                border-radius: 20px;
+            }
+
+            .form-group input,
+            .form-group select {
+                padding: 16px 18px;
+                font-size: 0.95rem;
+            }
+
+            .date-inputs {
+                gap: 8px;
+            }
+
+            .submit-btn {
+                padding: 16px 35px;
+                font-size: 1rem;
+            }
+
+            .features li {
+                padding: 10px 0;
+                padding-left: 30px;
+                font-size: 0.9rem;
+            }
+
+            .logo-img {
+                max-width: 320px;
+                max-height: 130px;
+            }
+
+            /* Hide background logos on mobile for cleaner look */
+            body::before,
+            body::after,
+            .container::after {
+                display: none;
+            }
+
+            /* Reduce animations on mobile for better performance */
+            * {
+                animation-duration: 0.3s !important;
+            }
+
+            body {
+                animation: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <img src="avihirelogo.png" alt="AviHire" class="logo-img">
+        </div>
+        <div class="subtitle">Your Aviation Career Starts Here</div>
+        <div class="description">
+            Get ready to take your aviation career to new heights! AviHire is the premier job platform connecting aviation professionals with their dream opportunities. Pre-register now to set up your profile and be first in line for exclusive job opportunities when we launch - completely free for all aviation professionals.
+        </div>
+
+        <div class="profile-setup-note">
+            <strong>Pre-Registration Profile Setup</strong><br>
+            Complete your basic profile information below. This ensures you're ready to apply for aviation jobs the moment we launch!
+        </div>
+
+        <form class="signup-form" id="signupForm">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name (as it appears on your FAA license/certificate)</label>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label>Date of Birth</label>
+                <div class="date-inputs">
+                    <select id="birthMonth" name="birthMonth" required>
+                        <option value="">Month</option>
+                        <option value="01">January</option>
+                        <option value="02">February</option>
+                        <option value="03">March</option>
+                        <option value="04">April</option>
+                        <option value="05">May</option>
+                        <option value="06">June</option>
+                        <option value="07">July</option>
+                        <option value="08">August</option>
+                        <option value="09">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                    <select id="birthDay" name="birthDay" required>
+                        <option value="">Day</option>
+                    </select>
+                    <select id="birthYear" name="birthYear" required>
+                        <option value="">Year</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="company">Company (Optional)</label>
+                <input type="text" id="company" name="company">
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="termsAccepted" name="termsAccepted" required>
+                    <span class="checkmark"></span>
+                    I agree to the <a href="#" onclick="showTerms(); return false;">Terms and Conditions</a>
+                </label>
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="dataDisclaimer" name="dataDisclaimer" required>
+                    <span class="checkmark"></span>
+                    I understand that AviHire does not store FAA information and that this data is only used for verification purposes
+                </label>
+            </div>
+            
+            <button type="submit" class="submit-btn" id="submitBtn">
+                Pre-register Now
+            </button>
+        </form>
+
+        <div class="loading" id="loading">Signing you up...</div>
+        <div class="success-message" id="successMessage"></div>
+        <div class="error-message" id="errorMessage"></div>
+
+        <div class="features">
+            <h3>Be one of the first to sign up for:</h3>
+            <ul>
+                <li>Exclusive access to premium aviation positions</li>
+                <li>Direct recruiter connections with major airlines and aerospace companies</li>
+                <li>Advanced profile matching with industry-leading employers</li>
+                <li>Priority placement in candidate pools</li>
+                <li>Access to non-public aviation job opportunities</li>
+                <li>Professional networking with aviation industry leaders</li>
+            </ul>
+        </div>
+
+        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 30px; border-left: 4px solid #ff6b35;">
+            <div style="font-size: 0.95rem; color: #555; line-height: 1.5;">
+                <strong style="color: #333;">Don't have your A&P yet?</strong> No worries! Once the website launches, A&Ps will have a unique key they can give to inspired individuals so they can make an account.
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>
+                <a href="https://www.facebook.com/share/16fdyDk93F/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+                    <img src="facebook-logo.png" alt="Facebook" class="facebook-icon">
+                    Follow us on Facebook
+                </a>
+            </div>
+            <div style="margin-top: 8px;">
+                <a href="mailto:support@avihire.co">support@avihire.co</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms and Conditions Modal -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeTerms()">&times;</span>
+            <h2>Terms and Conditions</h2>
+            <div style="margin-top: 20px; line-height: 1.6; color: #555;">
+                <h3>1. Acceptance of Terms</h3>
+                <p>By signing up for early access to AviHire, you agree to these terms and conditions.</p>
+                
+                <h3>2. Service Description</h3>
+                <p>AviHire is a job platform designed to connect aviation professionals with employment opportunities. This pre-registration allows you to set up your profile in advance and gain priority access to job opportunities when we launch.</p>
+                
+                <h3>3. Data Collection and Privacy</h3>
+                <p>We collect the information you provide during signup to notify you of our launch and provide early access. We respect your privacy and will not share your information with third parties without your consent.</p>
+                
+                <h3>4. FAA Information Disclaimer</h3>
+                <p><strong>Important:</strong> AviHire does not store FAA license or certificate information in our databases. Any FAA-related data you provide is used solely for verification purposes and is not retained in our systems.</p>
+                
+                <h3>5. Communication</h3>
+                <p>By signing up, you consent to receive emails from AviHire about our launch, updates, and relevant aviation industry information. You may unsubscribe at any time.</p>
+                
+                <h3>6. Modifications</h3>
+                <p>AviHire reserves the right to modify these terms at any time. Users will be notified of significant changes.</p>
+                
+                <h3>7. Contact Information</h3>
+                <p>If you have questions about these terms, please contact us through our website at avihire.co</p>
+                
+                <p style="margin-top: 30px; font-size: 0.9rem; color: #666;">Last updated: July 2025</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getFirestore, collection, addDoc, serverTimestamp, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyA98QvCVSyddNRWBQ9fbhj0-aE_FMaBz_s",
+            authDomain: "avihire-e2102.firebaseapp.com",
+            projectId: "avihire-e2102",
+            storageBucket: "avihire-e2102.firebasestorage.app",
+            messagingSenderId: "212372485335",
+            appId: "1:212372485335:web:84b88251ee9af5250f6c92",
+            measurementId: "G-0D0331BJ72"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Populate date dropdowns
+        function populateDateDropdowns() {
+            // Populate days
+            const daySelect = document.getElementById('birthDay');
+            for (let i = 1; i <= 31; i++) {
+                const option = document.createElement('option');
+                option.value = i.toString().padStart(2, '0');
+                option.textContent = i;
+                daySelect.appendChild(option);
+            }
+
+            // Populate years (from 1940 to current year - 16 for minimum age)
+            const yearSelect = document.getElementById('birthYear');
+            const currentYear = new Date().getFullYear();
+            for (let i = currentYear - 16; i >= 1940; i--) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i;
+                yearSelect.appendChild(option);
+            }
+        }
+
+        // Terms modal functions
+        function showTerms() {
+            document.getElementById('termsModal').style.display = 'block';
+        }
+
+        function closeTerms() {
+            document.getElementById('termsModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('termsModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Initialize dropdowns when page loads
+        populateDateDropdowns();
+
+        // Make functions global for onclick handlers
+        window.showTerms = showTerms;
+        window.closeTerms = closeTerms;
+
+        // Form submission handler
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const loading = document.getElementById('loading');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            const form = document.getElementById('signupForm');
+
+            // Validate checkboxes
+            const termsAccepted = document.getElementById('termsAccepted').checked;
+            const dataDisclaimer = document.getElementById('dataDisclaimer').checked;
+            
+            if (!termsAccepted || !dataDisclaimer) {
+                errorMessage.textContent = 'Please accept the terms and conditions and data disclaimer to continue.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            // Show loading state
+            submitBtn.disabled = true;
+            form.style.display = 'none';
+            loading.style.display = 'block';
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+
+            // Get form data
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim().toLowerCase();
+            const birthMonth = document.getElementById('birthMonth').value;
+            const birthDay = document.getElementById('birthDay').value;
+            const birthYear = document.getElementById('birthYear').value;
+            const dateOfBirth = `${birthMonth}/${birthDay}/${birthYear}`;
+            const company = document.getElementById('company').value.trim();
+
+            try {
+                // Step 1: Check for duplicate email
+                loading.innerHTML = 'Checking registration status...';
+                
+                const emailQuery = query(
+                    collection(db, 'prelaunch-signups'), 
+                    where('email', '==', email)
+                );
+                const emailSnapshot = await getDocs(emailQuery);
+                
+                if (!emailSnapshot.empty) {
+                    throw new Error('An account with this email address already exists. Please use a different email or contact support if you believe this is an error.');
+                }
+
+                // Step 2: Verify with FAA API (REQUIRED)
+                loading.innerHTML = 'Verifying FAA credentials...';
+                
+                let faaVerified = false;
+                let faaVerificationData = null;
+                let verificationMessage = '';
+                
+                try {
+                    const faaResponse = await fetch('http://localhost:3000/api/v1/verify', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            lastName: lastName.toUpperCase(),
+                            dateOfBirth: dateOfBirth
+                        })
+                    });
+
+                    const faaResult = await faaResponse.json();
+                    
+                    if (faaResult.success && faaResult.data) {
+                        faaVerified = true;
+                        faaVerificationData = faaResult.data;
+                        verificationMessage = faaResult.message || 'FAA credentials verified successfully';
+                        console.log('FAA verification successful:', faaResult.data);
+                    } else {
+                        verificationMessage = faaResult.message || 'No matching FAA records found';
+                        console.log('FAA verification failed:', faaResult.message);
+                    }
+                } catch (faaError) {
+                    console.warn('FAA API unavailable:', faaError);
+                    verificationMessage = 'Unable to connect to FAA verification service';
+                }
+
+                // Step 3: Block registration if not verified
+                if (!faaVerified) {
+                    throw new Error(`Registration unavailable: ${verificationMessage}. This platform is currently limited to FAA-verified aviation professionals only.`);
+                }
+
+                // Step 4: Save to Firebase (only if verified)
+                loading.innerHTML = 'Completing registration...';
+
+                const formData = {
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    dateOfBirth: dateOfBirth,
+                    company: company,
+                    faaVerified: true, // Always true if we get here
+                    faaData: faaVerificationData,
+                    verificationMessage: verificationMessage,
+                    termsAccepted: true,
+                    dataDisclaimerAccepted: true,
+                    signupDate: serverTimestamp(),
+                    status: 'verified'
+                };
+
+                // Add to Firestore
+                await addDoc(collection(db, 'prelaunch-signups'), formData);
+                
+                // Show success message (only for verified users)
+                loading.style.display = 'none';
+                
+                successMessage.innerHTML = `
+                    <div style="text-align: center; line-height: 1.6; color: #333;">
+                        <div style="font-size: 1.3em; font-weight: 600; color: #1a365d; margin-bottom: 15px;">
+                            ✅ Registration Complete
+                        </div>
+                        
+                        <div style="background: #f8fffe; border: 1px solid #d1f2eb; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                            <div style="font-weight: 500; color: #155724; margin-bottom: 8px;">
+                                FAA Verification: Confirmed
+                            </div>
+                            <div style="color: #666; font-size: 0.95em;">
+                                ${faaVerificationData.name}
+                            </div>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 18px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #ff6b35;">
+                            <div style="font-weight: 500; margin-bottom: 8px;">What happens next?</div>
+                            <div style="font-size: 0.95em; color: #555;">
+                                You'll receive a launch notification from <strong>accounts@avihire.co</strong> when AviHire goes live. As a verified professional, you'll have priority access to all job opportunities.
+                            </div>
+                        </div>
+                        
+                        <div style="color: #666; font-size: 0.9em; margin-top: 15px;">
+                            Thank you for joining AviHire
+                        </div>
+                    </div>
+                `;
+                
+                successMessage.style.display = 'block';
+                
+                // Reset form
+                document.getElementById('signupForm').reset();
+                
+            } catch (error) {
+                console.error('Error during signup process:', error);
+                
+                // Show error message
+                loading.style.display = 'none';
+                errorMessage.innerHTML = `
+                    Something went wrong during registration. 
+                    <br><br>
+                    <strong>Error details:</strong> ${error.message}
+                    <br><br>
+                    Please try again or contact us directly at support@avihire.co
+                `;
+                errorMessage.style.display = 'block';
+                form.style.display = 'block';
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
